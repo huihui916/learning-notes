@@ -6,7 +6,7 @@
 <i>By huaxz1986@163.com</i>
 # 《UNIX环境高级编程》第三版中文笔记
 
-该笔记来自于本人的学习笔记。
+Copy自github.com/huaxz1986/APUE_notes,仅作个人学习使用
 
 ## 缘由
 
