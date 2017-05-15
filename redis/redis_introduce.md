@@ -155,6 +155,7 @@ typedef struct list {
 ```
 当一个列表键只包含少数列表项的时候，并且每个列表项并不是很长的内容时，那么redis就会使用压缩列表来做列表键的底层实现,大致结构如下：
 `<zlbytes><zltail><zllen><entry><entry><zlend>`
+
 zlbytes: 无符号整数，表示ziplist总字节数
 
 zltail: 最后一个元素的偏移量，使得pop操作不用遍历整个结构
@@ -230,6 +231,7 @@ redis 127.0.0.1:6379> SDIFF birds mammals
 2) "pigeon"
 ```
 #### 2.3.2 数据结构
+
 当一个集合只包含整形值元素是，Redis就会使用intset(整形集合)作为集合键的底层实现，数据结构比较简单，保存类型可以为int16_t或者int32_t或者int64_t。
 ```
 typedef struct intset {
@@ -271,8 +273,7 @@ typedef struct dict {
 
 ```
 
-![image]
-(./img/1.png)
+![image](./img/1.png)
 
 上图是一个字典事例，Redis的哈希算法使用的是MurmurHash2来计算键的hash值，用开放链地址来解决hash值冲突问题，链表为单向链表从表头添加。
 随着操作不断进行，哈希表保存的键值会不断增加或减少，为了让哈希表的负载因子在一个合理的范围，程序会对哈希表的大小进行相应地扩展或收缩，及rehash，rehash过程也是根据服务器状态渐进式的rehash，从而不会影响服务。
